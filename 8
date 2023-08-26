@@ -1,0 +1,51 @@
+#include <stdio.h>
+#include <string.h>
+
+struct Produto {
+    char nome[50];
+    float preco;
+    int quantidadeEstoque;
+};
+
+float calcularTotal(struct Produto produto, int quantidade) {
+    return produto.preco * quantidade;
+}
+
+int main() {
+    struct Produto produtos[4] = {
+        {"Produto A", 10.0, 10},
+        {"Produto B", 15.0, 5},
+        {"Produto C", 20.0, 8},
+        {"Produto D", 8.0, 12}
+    };
+
+    printf("Produtos disponíveis:\n");
+    for (int i = 0; i < 4; i++) {
+        printf("%d. %s - R$%.2f (%d em estoque)\n",
+               i + 1, produtos[i].nome, produtos[i].preco, produtos[i].quantidadeEstoque);
+    }
+
+    int opcao, quantidade;
+    printf("Escolha o número do produto que deseja comprar: ");
+    scanf("%d", &opcao);
+
+    if (opcao >= 1 && opcao <= 4) {
+        opcao--;
+
+        printf("Quantidade desejada: ");
+        scanf("%d", &quantidade);
+
+        if (quantidade > 0 && quantidade <= produtos[opcao].quantidadeEstoque) {
+            float total = calcularTotal(produtos[opcao], quantidade);
+            printf("Total da compra: R$%.2f\n", total);
+            produtos[opcao].quantidadeEstoque -= quantidade;
+            printf("Compra realizada. %d unidades restantes em estoque.\n", produtos[opcao].quantidadeEstoque);
+        } else {
+            printf("Quantidade inválida ou estoque insuficiente.\n");
+        }
+    } else {
+        printf("Opção inválida.\n");
+    }
+
+    return 0;
+}
