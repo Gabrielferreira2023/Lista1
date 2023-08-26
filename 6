@@ -1,0 +1,40 @@
+#include <stdio.h>
+
+struct Estudante {
+    char nome[50];
+    int matricula;
+    float notas[3];
+};
+
+float calcularMedia(float notas[]) {
+    float soma = 0;
+    for (int i = 0; i < 3; i++) {
+        soma += notas[i];
+    }
+    return soma / 3;
+}
+
+int main() {
+    struct Estudante aluno;
+
+    printf("Nome do aluno: ");
+    scanf("%s", aluno.nome);
+
+    printf("Matrícula do aluno: ");
+    scanf("%d", &aluno.matricula);
+
+    for (int i = 0; i < 3; i++) {
+        printf("Nota na disciplina %d: ", i + 1);
+        scanf("%f", &aluno.notas[i]);
+    }
+
+    float media = calcularMedia(aluno.notas);
+
+    if (media >= 7.0) {
+        printf("O aluno %s está aprovado com média %.2f.\n", aluno.nome, media);
+    } else {
+        printf("O aluno %s não está aprovado com média %.2f.\n", aluno.nome, media);
+    }
+
+    return 0;
+}
