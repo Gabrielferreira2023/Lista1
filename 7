@@ -1,0 +1,68 @@
+#include <stdio.h>
+
+struct ContaBancaria {
+    char titular[50];
+    int numeroConta;
+    float saldo;
+};
+
+void depositar(struct ContaBancaria *conta, float valor) {
+    conta->saldo += valor;
+    printf("Depósito realizado. Saldo atual: %.2f\n", conta->saldo);
+}
+
+void sacar(struct ContaBancaria *conta, float valor) {
+    if (valor > conta->saldo) {
+        printf("Saldo insuficiente.\n");
+    } else {
+        conta->saldo -= valor;
+        printf("Saque realizado. Saldo atual: %.2f\n", conta->saldo);
+    }
+}
+
+void verificarSaldo(struct ContaBancaria conta) {
+    printf("Saldo atual: %.2f\n", conta.saldo);
+}
+
+int main() {
+    struct ContaBancaria minhaConta;
+    minhaConta.saldo = 0;
+
+    printf("Digite seu nome: ");
+    scanf("%s", minhaConta.titular);
+
+    printf("Digite o número da conta: ");
+    scanf("%d", &minhaConta.numeroConta);
+
+    int opcao;
+    do {
+        printf("\nMenu:\n1. Depositar\n2. Sacar\n3. Verificar Saldo\n4. Sair\n");
+        printf("Escolha uma opção: ");
+        scanf("%d", &opcao);
+
+        switch (opcao) {
+            case 1:
+                printf("Digite o valor para depositar: ");
+                float valorDeposito;
+                scanf("%f", &valorDeposito);
+                depositar(&minhaConta, valorDeposito);
+                break;
+            case 2:
+                printf("Digite o valor para sacar: ");
+                float valorSaque;
+                scanf("%f", &valorSaque);
+                sacar(&minhaConta, valorSaque);
+                break;
+            case 3:
+                verificarSaldo(minhaConta);
+                break;
+            case 4:
+                printf("Obrigado por usar nosso banco. Até mais!\n");
+                break;
+            default:
+                printf("Opção inválida. Tente novamente.\n");
+        }
+    } while (opcao != 4);
+
+    return 0;
+}
