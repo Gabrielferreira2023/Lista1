@@ -1,0 +1,27 @@
+#include <stdio.h>
+
+struct Tipo {
+    int numero;
+    float decimal;
+    char caractere;
+};
+
+int main() {
+
+    struct Tipo meuTipo;
+
+    printf("Digite um número inteiro: ");
+    scanf("%d", &meuTipo.numero);
+
+    printf("Digite um número decimal: ");
+    scanf("%f", &meuTipo.decimal);
+
+    printf("Digite um caractere: ");
+    scanf(" %c", &meuTipo.caractere);
+
+    printf("Número: %d\n", meuTipo.numero);
+    printf("Decimal: %.5f\n", meuTipo.decimal);
+    printf("Caractere: %c\n", meuTipo.caractere);
+
+    return 0;
+}
