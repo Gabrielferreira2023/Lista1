@@ -1,0 +1,40 @@
+#include <stdio.h>
+
+float taxaDeCambio = 0.92;
+
+float converterDolaresParaEuros(float dolares) {
+    return dolares * taxaDeCambio;
+}
+
+float converterEurosParaDolares(float euros) {
+    return euros / taxaDeCambio;
+}
+
+int main() {
+    float valor;
+
+    printf("Digite o valor em dólares: ");
+    scanf("%f", &valor);
+
+    float euros = converterDolaresParaEuros(valor);
+    printf("%.2f dólares equivalem a %.2f euros.\n", valor, euros);
+
+    printf("Digite o valor em euros: ");
+    scanf("%f", &valor);
+
+    float dolares = converterEurosParaDolares(valor);
+    printf("%.2f euros equivalem a %.2f dólares.\n", valor, dolares);
+
+    return 0;
+}
+
+
+
+
+
+
+
+
+
+
+
