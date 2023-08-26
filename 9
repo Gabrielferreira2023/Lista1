@@ -1,0 +1,50 @@
+#include <stdio.h>
+#include <string.h>
+#include <time.h>
+
+struct Funcionario {
+    char nome[50];
+    char cargo[50];
+    float salario;
+    time_t dataAdmissao;
+};
+
+void darAumento(struct Funcionario *funcionario, float aumento) {
+    funcionario->salario += aumento;
+    printf("Aumento de %.2f aplicado. Novo salário: R$%.2f\n", aumento, funcionario->salario);
+}
+
+void calcularTempoDeAdmissao(struct Funcionario funcionario) {
+    time_t agora;
+    time(&agora);
+
+    double diferenca = difftime(agora, funcionario.dataAdmissao);
+    int anos = diferenca / (60 * 60 * 24 * 365);
+
+    printf("Tempo de admissão: %d anos\n", anos);
+}
+
+int main() {
+    struct Funcionario funcionario;
+
+    printf("Digite o nome do funcionário: ");
+    scanf("%s", funcionario.nome);
+
+    printf("Digite o cargo do funcionário: ");
+    scanf("%s", funcionario.cargo);
+
+    printf("Digite o salário do funcionário: ");
+    scanf("%f", &funcionario.salario);
+
+    printf("Digite a data de admissão : ");
+    scanf("%ld", &funcionario.dataAdmissao);
+
+    printf("\nInformações do funcionário:\n");
+    printf("Nome: %s\nCargo: %s\nSalário: R$%.2f\n",
+           funcionario.nome, funcionario.cargo, funcionario.salario);
+
+    darAumento(&funcionario, 500.0);
+    calcularTempoDeAdmissao(funcionario);
+
+    return 0;
+}
