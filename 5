@@ -1,0 +1,67 @@
+#include <stdio.h>
+#include <string.h>
+
+struct Livro {
+    char titulo[100];
+    char autor[50];
+    int anoPublicacao;
+};
+
+int main() {
+    struct Livro biblioteca[100];
+    int numLivros = 0;
+
+    while (1) {
+        printf("\nMenu:\n1. Adicionar Livro\n2. Listar Livros\n3. Buscar Livro por Autor\n4. Sair\n");
+        printf("Escolha uma opção: ");
+        int opcao;
+        scanf("%d", &opcao);
+
+        switch (opcao) {
+            case 1:
+                printf("Título: ");
+                scanf(" %[^\n]", biblioteca[numLivros].titulo);
+
+                printf("Autor: ");
+                scanf(" %[^\n]", biblioteca[numLivros].autor);
+
+                printf("Ano de Publicação: ");
+                scanf("%d", &biblioteca[numLivros].anoPublicacao);
+
+                numLivros++;
+                printf("Livro adicionado.\n");
+                break;
+
+            case 2:
+                printf("Lista de livros:\n");
+                for (int i = 0; i < numLivros; i++) {
+                    printf("Título: %s\nAutor: %s\nAno: %d\n\n",
+                           biblioteca[i].titulo, biblioteca[i].autor, biblioteca[i].anoPublicacao);
+                }
+                break;
+
+            case 3:
+                printf("Digite o nome do autor: ");
+                char autorBusca[50];
+                scanf(" %[^\n]", autorBusca);
+
+                printf("Livros do autor %s:\n", autorBusca);
+                for (int i = 0; i < numLivros; i++) {
+                    if (strcmp(biblioteca[i].autor, autorBusca) == 0) {
+                        printf("Título: %s\nAno: %d\n\n",
+                               biblioteca[i].titulo, biblioteca[i].anoPublicacao);
+                    }
+                }
+                break;
+
+            case 4:
+                printf("Encerrando.\n");
+                return 0;
+
+            default:
+                printf("Opção inválida.\n");
+        }
+    }
+
+    return 0;
+}
